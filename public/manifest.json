@@ -7,7 +7,7 @@
   "display": "standalone",
   "start_url": "/",
   "icons": [{
-    "src": "/assets/icon.png",
+    "src": "/icon-ttt.png",
     "type": "image/png",
     "sizes": "512x512"
   }]
