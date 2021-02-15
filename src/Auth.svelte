@@ -3,8 +3,8 @@
   let loginPass;
   let signUser;
   let signPass;
-  let loginResult = null;
-  let signResult = null;
+  let loginResult = "";
+  let signResult = "";
 
   let current = "login";
 
@@ -12,12 +12,15 @@
     const res = await fetch("http://127.0.0.1:3000/login", {
       method: "POST",
       body: JSON.stringify({
-        loginUser,
-        loginPass
-      })
+        loginUser: loginUser,
+        loginPass: loginPass
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
     });
     const loginjson = await res.json();
-    loginResult = JSON.stringify(loginjson);
+    loginResult = loginjson.message;
     console.log(loginResult);
   }
 
@@ -27,10 +30,13 @@
       body: JSON.stringify({
         signUser,
         signPass
-      })
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
     });
     const signjson = await res.json();
-    signResult = JSON.stringify(signjson);
+    signResult = signjson.message;
     console.log(signResult);
   }
 </script>
@@ -72,11 +78,13 @@
     name="loginPass"
     bind:value={loginPass} />
   <br />
+  {loginResult}
+  <br />
   <button type="button" on:click={login}>Submit</button>
   <p class="switch" on:click={() => (current = 'signup')}>
     I don't have an account. Signup.
   </p>
-  {loginResult}
+
 </form>
 
 <form class={current === 'signup' ? 'selected' : ''}>
@@ -85,6 +93,8 @@
   <input type="text" id="signUser" name="signUser" bind:value={signUser} />
   <label for="signPass">Password</label>
   <input type="password" id="signPass" name="signPass" bind:value={signPass} />
+  <br />
+  {signResult}
   <br />
   <button type="button" on:click={signup}>Submit</button>
   <p class="switch" on:click={() => (current = 'login')}>
