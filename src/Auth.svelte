@@ -9,7 +9,7 @@
   let current = "login";
 
   async function login() {
-    const res = await fetch("http://127.0.0.1:3000/login", {
+    const res = await fetch("https://server-ttt.herokuapp.com/login", {
       method: "POST",
       body: JSON.stringify({
         loginUser: loginUser,
