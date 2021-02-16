@@ -1,16 +1,21 @@
 <script>
+  import { loggedIn } from "./store.js";
+
   import Auth from "./Auth.svelte";
+  import Main from "./Main.svelte";
 </script>
 
 <style>
   main {
-    text-align: center;
     padding: 1em;
-    max-width: 240px;
     margin: 0 auto;
   }
 </style>
 
 <main>
-  <Auth />
+  {#if $loggedIn}
+    <Auth />
+  {:else}
+    <Main />
+  {/if}
 </main>

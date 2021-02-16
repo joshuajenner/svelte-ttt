@@ -1,4 +1,7 @@
 <script>
+  import { user } from "./store.js";
+  import { loggedIn } from "./store.js";
+
   let loginUser;
   let loginPass;
   let signUser;
@@ -9,7 +12,7 @@
   let current = "login";
 
   async function login() {
-    const res = await fetch("https://server-ttt.herokuapp.com/login", {
+    const res = await fetch("http://127.0.0.1:3000/login", {
       method: "POST",
       body: JSON.stringify({
         loginUser: loginUser,
@@ -21,7 +24,10 @@
     });
     const loginjson = await res.json();
     loginResult = loginjson.message;
-    console.log(loginResult);
+    if (loginjson.success) {
+      loggedIn.set(true);
+      user.set(loginjson.username);
+    }
   }
 
   async function signup() {
@@ -43,6 +49,7 @@
 
 <style>
   form {
+    text-align: center;
     display: none;
   }
   .selected {
@@ -54,9 +61,6 @@
     text-transform: uppercase;
     font-size: 4em;
     font-weight: 100;
-  }
-
-  @media (min-width: 640px) {
   }
   .switch {
     color: midnightblue;
