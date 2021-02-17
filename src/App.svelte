@@ -3,6 +3,8 @@
 
   import Auth from "./Auth.svelte";
   import Main from "./Main.svelte";
+
+  // add ! to loggedin
 </script>
 
 <style>
@@ -13,7 +15,7 @@
 </style>
 
 <main>
-  {#if $loggedIn}
+  {#if !$loggedIn}
     <Auth />
   {:else}
     <Main />
