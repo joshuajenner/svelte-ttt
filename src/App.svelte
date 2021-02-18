@@ -1,23 +1,23 @@
 <script>
-  import { loggedIn } from "./store.js";
+	import { loggedIn } from "./store.js";
 
-  import Auth from "./Auth.svelte";
-  import Main from "./Main.svelte";
+	import Auth from "./Auth.svelte";
+	import Main from "./Main.svelte";
 
-  // add ! to loggedin
+	// add ! to loggedin
 </script>
 
-<style>
-  main {
-    padding: 1em;
-    margin: 0 auto;
-  }
-</style>
-
 <main>
-  {#if !$loggedIn}
-    <Auth />
-  {:else}
-    <Main />
-  {/if}
+	{#if $loggedIn}
+		<Auth />
+	{:else}
+		<Main />
+	{/if}
 </main>
+
+<style>
+	main {
+		padding: 1em;
+		margin: 0 auto;
+	}
+</style>
