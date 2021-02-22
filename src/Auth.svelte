@@ -49,8 +49,14 @@
 </script>
 
 <style>
+  #auth {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
   form {
-    text-align: center;
     display: none;
   }
   .selected {
@@ -60,11 +66,21 @@
   h1 {
     color: crimson;
     text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
+    margin-bottom: 32px;
+  }
+  h3 {
+    color: darkslategrey;
+    margin-bottom: 24px;
+  }
+  label {
+    font-size: 12px;
+    margin-top: 16px;
+    margin-bottom: 4px;
   }
   .switch {
-    color: midnightblue;
+    color: cornflowerblue;
+    font-size: 12px;
+    margin-top: 16px;
   }
   .switch:hover {
     text-decoration: underline;
@@ -72,37 +88,44 @@
   }
 </style>
 
-<form class={current === 'login' ? 'selected' : ''}>
-  <h1>Login</h1>
-  <label for="loginUser">Username</label>
-  <input type="text" id="loginUser" name="loginUser" bind:value={loginUser} />
-  <label for="loginPass">Password</label>
-  <input
-    type="password"
-    id="loginPass"
-    name="loginPass"
-    bind:value={loginPass} />
-  <br />
-  {loginResult}
-  <br />
-  <button type="button" on:click={login}>Submit</button>
-  <p class="switch" on:click={() => (current = 'signup')}>
-    I don't have an account. Signup.
-  </p>
+<div id="auth">
+  <h1>G2-8 TTT</h1>
+  <form class={current === 'login' ? 'selected' : ''}>
+    <h3>Login</h3>
+    <label for="loginUser">Username</label>
+    <input type="text" id="loginUser" name="loginUser" bind:value={loginUser} />
+    <label for="loginPass">Password</label>
+    <input
+      type="password"
+      id="loginPass"
+      name="loginPass"
+      bind:value={loginPass} />
+    <br />
+    {loginResult}
+    <br />
+    <button class="btb" type="button" on:click={login}>Submit</button>
+    <p class="switch" on:click={() => (current = 'signup')}>
+      I don't have an account. Signup.
+    </p>
 
-</form>
+  </form>
 
-<form class={current === 'signup' ? 'selected' : ''}>
-  <h1>Signup</h1>
-  <label for="signUser">Username</label>
-  <input type="text" id="signUser" name="signUser" bind:value={signUser} />
-  <label for="signPass">Password</label>
-  <input type="password" id="signPass" name="signPass" bind:value={signPass} />
-  <br />
-  {signResult}
-  <br />
-  <button type="button" on:click={signup}>Submit</button>
-  <p class="switch" on:click={() => (current = 'login')}>
-    I already have an account. Login.
-  </p>
-</form>
+  <form class={current === 'signup' ? 'selected' : ''}>
+    <h3>Signup</h3>
+    <label for="signUser">Username</label>
+    <input type="text" id="signUser" name="signUser" bind:value={signUser} />
+    <label for="signPass">Password</label>
+    <input
+      type="password"
+      id="signPass"
+      name="signPass"
+      bind:value={signPass} />
+    <br />
+    {signResult}
+    <br />
+    <button class="btb" type="button" on:click={signup}>Submit</button>
+    <p class="switch" on:click={() => (current = 'login')}>
+      I already have an account. Login.
+    </p>
+  </form>
+</div>
