@@ -8,14 +8,6 @@
 </script>
 
 <style>
-  @font-face {
-    font-family: Permanent Marker;
-    src: url(PermanentMarker-Regular.ttf);
-  }
-  @font-face {
-    font-family: Roboto;
-    src: url("Roboto-Regular.ttf");
-  }
   main {
     margin: 0 auto;
   }
