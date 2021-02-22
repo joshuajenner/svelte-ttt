@@ -9,7 +9,7 @@
   let role = "";
   let board = [];
   let opponent = [];
-  let winner = null;
+  let winner = "none";
   let roomClosed = false;
 
   function leaveRoom() {
@@ -33,7 +33,7 @@
   board = initBoard();
 
   function sendMove(room, tile) {
-    if (winner == null) {
+    if (!winner.localeCompare("none")) {
       if (opponent.length > 1) {
         if (!role.localeCompare("player")) {
           if (!turn.localeCompare($user)) {
@@ -83,6 +83,11 @@
   $socket.on("playerdc", arg => {
     roomClosed = true;
     turn = "";
+  });
+  $socket.on("boardfull", arg => {
+    roomClosed = true;
+    turn = "";
+    winner = "tied";
   });
 </script>
 
@@ -220,21 +225,26 @@
       {/each}
     </div>
   {/await}
-  {#if winner != null}
+  {#if winner.localeCompare('none')}
     <div id="winBox">
-      <div id="winTitle">
-        <h3>Winner:</h3>
-      </div>
-      <div id="winName">
-        <h3>{winner}</h3>
-      </div>
+      {#if !winner.localeCompare('tied')}
+        <div id="winTitle">
+          <h3>Game Tied</h3>
+        </div>
+      {:else}
+        <div id="winTitle">
+          <h3>Winner:</h3>
+        </div>
+        <div id="winName">
+          <h3>{winner}</h3>
+        </div>
+      {/if}
       <div id="winLeave">
         <button class="btr" on:click={leaveRoom}>Leave</button>
       </div>
-
     </div>
   {/if}
-  {#if winner == null}
+  {#if !winner.localeCompare('none')}
     {#if roomClosed == true}
       <div id="roomClosed">
         <div id="closedMessage">
