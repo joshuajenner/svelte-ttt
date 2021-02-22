@@ -253,7 +253,11 @@
       <div id="roomClosed">
         <div id="closedMessage">
           {#if !role.localeCompare('player')}
-            <h3>Your opponent disconnected.</h3>
+            <h3>
+              Your opponent
+              <br />
+              disconnected.
+            </h3>
           {:else}
             <h3>A player disconnected.</h3>
           {/if}
