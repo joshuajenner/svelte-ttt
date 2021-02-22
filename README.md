@@ -1,6 +1,16 @@
 *Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
 ---
+# Instructions
+
+1. Install node.js
+2. Clone project
+3. Navigate to project directory
+4. Run command -> npm install
+5. Run command -> npm run dev
+
+
+
 
 # svelte app
 
