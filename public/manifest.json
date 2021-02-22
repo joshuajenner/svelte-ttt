@@ -1,9 +1,9 @@
 {
   "name": "G2-8 TicTacToe",
   "short_name": "G2-8 TTT",
-  "background_color": "#dae1eb",
+  "background_color": "#e6e6e6",
   "orientation": "portrait",
-  "theme_color": "#dae1eb",
+  "theme_color": "#e6e6e6",
   "display": "standalone",
   "start_url": "/",
   "icons": [{
