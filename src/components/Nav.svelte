@@ -22,7 +22,7 @@
 <nav>
   <div id="userNav">
     <!-- <input bind:value={$user} /> -->
-    <h2>{$user}</h2>
+    <p>{$user}</p>
   </div>
   <div id="logout">
     <button class="btg" on:click={handleLogout}>Logout</button>

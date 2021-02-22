@@ -73,18 +73,26 @@
     margin-bottom: 24px;
   }
   label {
-    font-size: 12px;
+    font-size: 16px;
     margin-top: 16px;
     margin-bottom: 4px;
   }
+  .errorMessage {
+    font-size: 16px;
+    margin: 8px 0px;
+    color: crimson;
+  }
   .switch {
     color: cornflowerblue;
-    font-size: 12px;
-    margin-top: 16px;
+    font-size: 16px;
+    margin-top: 32px;
   }
   .switch:hover {
     text-decoration: underline;
     cursor: pointer;
+  }
+  .submit {
+    margin-top: 8px;
   }
 </style>
 
@@ -100,10 +108,10 @@
       id="loginPass"
       name="loginPass"
       bind:value={loginPass} />
-    <br />
-    {loginResult}
-    <br />
-    <button class="btb" type="button" on:click={login}>Submit</button>
+    <div class="errorMessage">
+      <p>{signResult}</p>
+    </div>
+    <button class="btb submit" type="button" on:click={login}>Submit</button>
     <p class="switch" on:click={() => (current = 'signup')}>
       I don't have an account. Signup.
     </p>
@@ -120,10 +128,10 @@
       id="signPass"
       name="signPass"
       bind:value={signPass} />
-    <br />
-    {signResult}
-    <br />
-    <button class="btb" type="button" on:click={signup}>Submit</button>
+    <div class="errorMessage">
+      <p>{signResult}</p>
+    </div>
+    <button class="btb submit" type="button" on:click={signup}>Submit</button>
     <p class="switch" on:click={() => (current = 'login')}>
       I already have an account. Login.
     </p>

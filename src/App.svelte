@@ -28,7 +28,7 @@
     rel="stylesheet" />
 </svelte:head>
 <main>
-  {#if !$loggedIn}
+  {#if $loggedIn}
     <Auth />
   {:else}
     <Main />

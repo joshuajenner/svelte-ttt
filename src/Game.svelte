@@ -184,24 +184,24 @@
 </div>
 <div id="opponentInfo">
   {#if opponent.length === 1}
-    <h2>Waiting for opponent...</h2>
+    <p>Waiting for opponent...</p>
   {:else if opponent.length === 2}
     {#if !role.localeCompare('player')}
       {#each opponent as op}
         {#if op.localeCompare($user)}
-          <h2>Playing against: {op}</h2>
+          <p>Playing against: {op}</p>
         {/if}
       {/each}
     {:else}
-      <h3>You are viewing:</h3>
-      <h3>{opponent[0]} VS {opponent[1]}</h3>
+      <p>You are viewing:</p>
+      <p>{opponent[0]} VS {opponent[1]}</p>
     {/if}
   {/if}
 </div>
 
 <div id="board" class={role}>
   {#await board}
-    <h3>Loading Board...</h3>
+    <p>Loading Board...</p>
   {:then b}
     <div id="boardGrid">
       {#each b as tile, i}
@@ -254,11 +254,11 @@
   {#if turn.localeCompare('')}
     {#if opponent.length > 1}
       {#if !role.localeCompare('viewer')}
-        <h2>Turn: {turn}</h2>
+        <p>Turn: {turn}</p>
       {:else if !turn.localeCompare($user)}
-        <h2>Your move.</h2>
+        <p>Your move.</p>
       {:else}
-        <h2>Your opponent's move...</h2>
+        <p>Your opponent's move...</p>
       {/if}
     {/if}
   {/if}

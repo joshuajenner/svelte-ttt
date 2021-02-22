@@ -61,8 +61,8 @@
     display: flex;
     align-items: center;
   }
-  #listRoomTitle h1 {
-    margin-right: 24px;
+  span {
+    margin-left: 12px;
   }
   .roomData {
     display: flex;
@@ -86,7 +86,7 @@
 </svelte:head>
 <div id="listHeader">
   <div id="listRoomTitle">
-    <h1>All Rooms</h1>
+    <h2>All Rooms</h2>
     <span class="material-icons refresh" on:click={refreshRooms}>cached</span>
   </div>
   <div>
@@ -96,7 +96,7 @@
 
 <div id="allRooms">
   {#await listedRooms}
-    <h3>Loading...</h3>
+    <p>Loading...</p>
   {:then rooms}
     {#if rooms.length > 0}
       {#each rooms as room}
@@ -120,10 +120,10 @@
       {/each}
     {:else}
       <div id="noRooms">
-        <h2>No rooms found. Please click above to create one.</h2>
+        <p>No rooms found. Please click above to create one.</p>
       </div>
     {/if}
   {:catch error}
-    <h3>Error</h3>
+    <p>Error</p>
   {/await}
 </div>
