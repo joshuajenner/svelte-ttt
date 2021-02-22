@@ -114,13 +114,14 @@
     height: 70%;
     transform: translate(50%, -50%);
     background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
   }
-  #winBox,
+  #winBox > *,
   #roomClosed > * {
     margin-bottom: 24px;
   }
