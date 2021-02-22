@@ -211,16 +211,20 @@
   {:then b}
     <div id="boardGrid">
       {#each b as tile, i}
-        <div class="tile" on:click={sendMove($room, i)}>
-          <div class="tileContent">
-            {#if tile === 0}
+        <div class="tile">
+          {#if tile === 0}
+            <div class="tileContent" on:click={sendMove($room, i)}>
               <p />
-            {:else if tile === 1}
+            </div>
+          {:else if tile === 1}
+            <div class="tileContent">
               <p>O</p>
-            {:else if tile === 2}
+            </div>
+          {:else if tile === 2}
+            <div class="tileContent">
               <p>X</p>
-            {/if}
-          </div>
+            </div>
+          {/if}
         </div>
       {/each}
     </div>
