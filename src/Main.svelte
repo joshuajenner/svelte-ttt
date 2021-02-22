@@ -1,9 +1,10 @@
 <script>
-  import { io } from "socket.io-client";
-  const socketio = io("http://127.0.0.1:3000");
-
+  import { url } from "./store.js";
   import { room } from "./store.js";
   import { socket } from "./store.js";
+
+  import { io } from "socket.io-client";
+  const socketio = io(`${$url}`);
 
   import Nav from "./components/Nav.svelte";
   import RoomList from "./components/RoomList.svelte";
@@ -13,12 +14,16 @@
 </script>
 
 <style>
-
+  #container {
+    margin: 0px 16px;
+  }
 </style>
 
 <Nav />
-{#if $room == undefined}
-  <RoomList />
-{:else}
-  <Game />
-{/if}
+<div id="container">
+  {#if $room == undefined}
+    <RoomList />
+  {:else}
+    <Game />
+  {/if}
+</div>

@@ -2,6 +2,7 @@
   import { room } from "../store.js";
   import { socket } from "../store.js";
   import { user } from "../store.js";
+  import { url } from "../store.js";
 
   let check = 0;
   let createdRoom = "";
@@ -21,7 +22,7 @@
     room.set(givenRoom);
   }
   async function listRooms() {
-    const res = await fetch("http://127.0.0.1:3000/getrooms", {
+    const res = await fetch(`${$url}/getrooms`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -35,27 +36,61 @@
   function refreshRooms() {
     listedRooms = listRooms();
   }
+  $socket.on("roomsrefreshed", arg => {
+    refreshRooms();
+  });
   refreshRooms();
 </script>
 
 <style>
-  #listHeader,
+  #listHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0px;
+    border-bottom: 1px solid lightgrey;
+  }
   .roomItem {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-top: 1px solid lightgrey;
+    padding: 32px 0px;
+  }
+  #listRoomTitle {
+    display: flex;
+    align-items: center;
+  }
+  #listRoomTitle h1 {
+    margin-right: 24px;
   }
   .roomData {
     display: flex;
     align-items: center;
   }
+  .roomJoin {
+    margin-left: 16px;
+  }
+  .refresh {
+    font-size: 36px;
+  }
+  #noRooms {
+    margin-top: 24px;
+  }
 </style>
 
+<svelte:head>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Icons"
+    rel="stylesheet" />
+</svelte:head>
 <div id="listHeader">
-  <h1>All Rooms</h1>
+  <div id="listRoomTitle">
+    <h1>All Rooms</h1>
+    <span class="material-icons refresh" on:click={refreshRooms}>cached</span>
+  </div>
   <div>
-    <button on:click={refreshRooms}>Refresh</button>
-    <button on:click={createRoom}>Create</button>
+    <button class="btb" on:click={createRoom}>Create</button>
   </div>
 </div>
 
@@ -71,16 +106,22 @@
             <div class="numJoined">{room.users.length}/2</div>
             <div class="roomJoin">
               {#if room.users.length > 1}
-                <button on:click={joinRoom(room.roomcode)}>Watch</button>
+                <button class="btw" on:click={joinRoom(room.roomcode)}>
+                  Watch
+                </button>
               {:else}
-                <button on:click={joinRoom(room.roomcode)}>Play</button>
+                <button class="btp" on:click={joinRoom(room.roomcode)}>
+                  Play
+                </button>
               {/if}
             </div>
           </div>
         </div>
       {/each}
     {:else}
-      <h3>No rooms found. Please click above to create one.</h3>
+      <div id="noRooms">
+        <h2>No rooms found. Please click above to create one.</h2>
+      </div>
     {/if}
   {:catch error}
     <h3>Error</h3>

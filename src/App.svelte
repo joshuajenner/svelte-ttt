@@ -12,14 +12,17 @@
     font-family: Permanent Marker;
     src: url(PermanentMarker-Regular.ttf);
   }
+  @font-face {
+    font-family: Roboto;
+    src: url("Roboto-Regular.ttf");
+  }
   main {
-    padding: 1em;
     margin: 0 auto;
   }
 </style>
 
 <main>
-  {#if $loggedIn}
+  {#if !$loggedIn}
     <Auth />
   {:else}
     <Main />

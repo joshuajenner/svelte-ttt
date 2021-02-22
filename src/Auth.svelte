@@ -1,6 +1,7 @@
 <script>
   import { user } from "./store.js";
   import { loggedIn } from "./store.js";
+  import { url } from "./store.js";
 
   let loginUser;
   let loginPass;
@@ -12,7 +13,7 @@
   let current = "login";
 
   async function login() {
-    const res = await fetch("http://127.0.0.1:3000/login", {
+    const res = await fetch(`${$url}/login`, {
       method: "POST",
       body: JSON.stringify({
         loginUser: loginUser,
@@ -31,7 +32,7 @@
   }
 
   async function signup() {
-    const res = await fetch("http://127.0.0.1:3000/signup", {
+    const res = await fetch(`${$url}/signup`, {
       method: "POST",
       body: JSON.stringify({
         signUser,

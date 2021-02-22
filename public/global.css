@@ -9,9 +9,40 @@ body {
 	margin: 0;
 	padding: 0px;
 	box-sizing: border-box;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 24px;
 }
-
+h1, h2, h3 {
+	margin: 0px;
+}
+h2 {
+	font-size: 24px;
+}
+h3 {
+	font-size: 32px;
+}
+button {
+	font-size: 24px;
+	padding: 8px 16px 8px 16px;
+	border-width: 0px;
+	border-radius: 4px;
+	color: white;
+}
+.btr {
+	background-color: crimson;
+}
+.btb {
+	background-color: midnightblue;
+}
+.btg {
+	background-color: slategrey;
+}
+.btp {
+	background-color: steelblue;
+}
+.btw {
+	background-color: seagreen;
+}
 a {
 	color: rgb(0,100,200);
 	text-decoration: none;
