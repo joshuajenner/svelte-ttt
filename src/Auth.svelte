@@ -49,25 +49,18 @@
 </script>
 
 <div id="auth">
-	<h1>G2-8 TTT</h1>
+	<h1>TicTacToe</h1>
 	<form class={current === "login" ? "selected" : ""}>
 		<h3>Login</h3>
 		<label for="loginUser">Username</label>
 		<input type="text" id="loginUser" name="loginUser" bind:value={loginUser} />
 		<label for="loginPass">Password</label>
-		<input
-			type="password"
-			id="loginPass"
-			name="loginPass"
-			bind:value={loginPass}
-		/>
+		<input type="password" id="loginPass" name="loginPass" bind:value={loginPass} />
 		<div class="errorMessage">
 			<p>{loginResult}</p>
 		</div>
 		<button class="btb submit" type="button" on:click={login}>Submit</button>
-		<p class="switch" on:click={() => (current = "signup")}>
-			I don't have an account. Signup.
-		</p>
+		<p class="switch" on:click={() => (current = "signup")}>I don't have an account. Signup.</p>
 	</form>
 
 	<form class={current === "signup" ? "selected" : ""}>
@@ -75,19 +68,12 @@
 		<label for="signUser">Username</label>
 		<input type="text" id="signUser" name="signUser" bind:value={signUser} />
 		<label for="signPass">Password</label>
-		<input
-			type="password"
-			id="signPass"
-			name="signPass"
-			bind:value={signPass}
-		/>
+		<input type="password" id="signPass" name="signPass" bind:value={signPass} />
 		<div class="errorMessage">
 			<p>{signResult}</p>
 		</div>
 		<button class="btb submit" type="button" on:click={signup}>Submit</button>
-		<p class="switch" on:click={() => (current = "login")}>
-			I already have an account. Login.
-		</p>
+		<p class="switch" on:click={() => (current = "login")}>I already have an account. Login.</p>
 	</form>
 </div>
 
