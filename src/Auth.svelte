@@ -44,7 +44,7 @@
 		});
 		const signjson = await res.json();
 		signResult = signjson.message;
-		console.log(signResult);
+		// console.log(signResult);
 	}
 </script>
 

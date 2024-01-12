@@ -60,7 +60,7 @@
   $socket.on("boardchanged", arg => {
     board = arg[0];
     turn = arg[1];
-    console.log("newBoard - ", arg);
+    // console.log("newBoard - ", arg);
   });
   $socket.on("winner", arg => {
     let addClass = "";

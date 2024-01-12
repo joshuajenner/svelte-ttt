@@ -29,7 +29,7 @@
       }
     });
     const rooms = await res.json();
-    console.log(rooms);
+    // console.log(rooms);
     return rooms;
   }
 
