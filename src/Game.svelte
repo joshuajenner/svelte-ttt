@@ -180,6 +180,14 @@
   .viewerTile {
     background-color: lightsteelblue;
   }
+  #pageWidth {
+    margin: auto;
+  }
+  @media (min-width: 600px) {
+    #pageWidth {
+      width: 600px;
+    }
+  }
 </style>
 
 <div id="roomInfo">
@@ -188,97 +196,100 @@
     <button class="btr" on:click={leaveRoom}>Leave</button>
   </div>
 </div>
-<div id="opponentInfo">
-  {#if opponent.length === 1}
-    <p>Waiting for opponent...</p>
-  {:else if opponent.length === 2}
-    {#if !role.localeCompare('player')}
-      {#each opponent as op}
-        {#if op.localeCompare($user)}
-          <p>Playing against: {op}</p>
-        {/if}
-      {/each}
-    {:else}
-      <p>You are viewing:</p>
-      <p>{opponent[0]} VS {opponent[1]}</p>
-    {/if}
-  {/if}
-</div>
 
-<div id="board" class={role}>
-  {#await board}
-    <p>Loading Board...</p>
-  {:then b}
-    <div id="boardGrid">
-      {#each b as tile, i}
-        <div class="tile">
-          {#if tile === 0}
-            <div class="tileContent" on:click={sendMove($room, i)}>
-              <p />
-            </div>
-          {:else if tile === 1}
-            <div class="tileContent">
-              <p>O</p>
-            </div>
-          {:else if tile === 2}
-            <div class="tileContent">
-              <p>X</p>
-            </div>
+<div id="pageWidth">
+  <div id="opponentInfo">
+    {#if opponent.length === 1}
+      <p>Waiting for opponent...</p>
+    {:else if opponent.length === 2}
+      {#if !role.localeCompare('player')}
+        {#each opponent as op}
+          {#if op.localeCompare($user)}
+            <p>Playing against: {op}</p>
           {/if}
-        </div>
-      {/each}
-    </div>
-  {/await}
-  {#if winner.localeCompare('none')}
-    <div id="winBox">
-      {#if !winner.localeCompare('tied')}
-        <div id="winTitle">
-          <h3>Game Tied</h3>
-        </div>
+        {/each}
       {:else}
-        <div id="winTitle">
-          <h3>Winner:</h3>
-        </div>
-        <div id="winName">
-          <h3>{winner}</h3>
-        </div>
+        <p>You are viewing:</p>
+        <p>{opponent[0]} VS {opponent[1]}</p>
       {/if}
-      <div id="winLeave">
-        <button class="btr" on:click={leaveRoom}>Leave</button>
+    {/if}
+  </div>
+
+  <div id="board" class={role}>
+    {#await board}
+      <p>Loading Board...</p>
+    {:then b}
+      <div id="boardGrid">
+        {#each b as tile, i}
+          <div class="tile">
+            {#if tile === 0}
+              <div class="tileContent" on:click={sendMove($room, i)}>
+                <p />
+              </div>
+            {:else if tile === 1}
+              <div class="tileContent">
+                <p>O</p>
+              </div>
+            {:else if tile === 2}
+              <div class="tileContent">
+                <p>X</p>
+              </div>
+            {/if}
+          </div>
+        {/each}
       </div>
-    </div>
-  {/if}
-  {#if !winner.localeCompare('none')}
-    {#if roomClosed == true}
-      <div id="roomClosed">
-        <div id="closedMessage">
-          {#if !role.localeCompare('player')}
-            <h3>
-              Your opponent
-              <br />
-              disconnected.
-            </h3>
-          {:else}
-            <h3>A player disconnected.</h3>
-          {/if}
-        </div>
-        <div id="closedLeave">
+    {/await}
+    {#if winner.localeCompare('none')}
+      <div id="winBox">
+        {#if !winner.localeCompare('tied')}
+          <div id="winTitle">
+            <h3>Game Tied</h3>
+          </div>
+        {:else}
+          <div id="winTitle">
+            <h3>Winner:</h3>
+          </div>
+          <div id="winName">
+            <h3>{winner}</h3>
+          </div>
+        {/if}
+        <div id="winLeave">
           <button class="btr" on:click={leaveRoom}>Leave</button>
         </div>
       </div>
     {/if}
-  {/if}
-</div>
-<div id="turn">
-  {#if turn.localeCompare('')}
-    {#if opponent.length > 1}
-      {#if !role.localeCompare('viewer')}
-        <p>Turn: {turn}</p>
-      {:else if !turn.localeCompare($user)}
-        <p>Your move.</p>
-      {:else}
-        <p>Your opponent's move...</p>
+    {#if !winner.localeCompare('none')}
+      {#if roomClosed == true}
+        <div id="roomClosed">
+          <div id="closedMessage">
+            {#if !role.localeCompare('player')}
+              <h3>
+                Your opponent
+                <br />
+                disconnected.
+              </h3>
+            {:else}
+              <h3>A player disconnected.</h3>
+            {/if}
+          </div>
+          <div id="closedLeave">
+            <button class="btr" on:click={leaveRoom}>Leave</button>
+          </div>
+        </div>
       {/if}
     {/if}
-  {/if}
+  </div>
+  <div id="turn">
+    {#if turn.localeCompare('')}
+      {#if opponent.length > 1}
+        {#if !role.localeCompare('viewer')}
+          <p>Turn: {turn}</p>
+        {:else if !turn.localeCompare($user)}
+          <p>Your move.</p>
+        {:else}
+          <p>Your opponent's move...</p>
+        {/if}
+      {/if}
+    {/if}
+  </div>
 </div>
